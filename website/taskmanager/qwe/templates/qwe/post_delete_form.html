@@ -1,0 +1,18 @@
+{% extends 'qwe/base_blog.html' %}
+
+{% block title %}
+    Post Delete "{{ post.title|title }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+    <form action="{% url 'post_delete_url' slug=post.slug %}", method="post">
+        {% csrf_token %}
+
+        <h3>Вы уверены что хотите удалить документ "{{ post.title|title }}"</h3>
+        <a href="{{ post.get_absolute_url }}" class="btn btn-success">Отмена</a>
+        <button type="submit", class="btn btn-danger">Удалить</button>
+    </form>
+
+
+{% endblock %}
